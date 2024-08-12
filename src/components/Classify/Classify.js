@@ -47,33 +47,34 @@ function Classify() {
     }, [previewImage]);
 
     return (
-        <div className="container">
-            <h1>Image Classification</h1>
-            {previewImage && ( // Display the image if previewImage is available
-                <div>
-                    <img src={previewImage} alt="Uploaded Preview" style={{ maxWidth: '100%' }} />
-                </div>
-            )}
-            <input type="file" onChange={handleFileChange} className="file-input" />
-            <button onClick={handleSubmit} disabled={!selectedFile} className="classify-button">
-                Upload and Classify
-            </button>
+        <div className="phrase_app">
+            <div className="container">
+                <h1>Image Classification</h1>
+                {previewImage && (
+                    <div>
+                        <img src={previewImage} alt="Uploaded Preview" style={{ maxWidth: '100%' }} />
+                    </div>
+                )}
 
+                <input type="file" onChange={handleFileChange} className="file-input" />
+                <button onClick={handleSubmit} disabled={!selectedFile} className="classify-button">
+                    Upload and Classify
+                </button>
 
-
-            {result && (
-                <div className="result-section">
-                    <h2>Classification Result:</h2>
-                    {result.error ? (
-                        <p className="error-message">{result.error}</p>
-                    ) : (
-                        <>
-                            <p>Best Class: {result.best_class_name}</p>
-                            <p>Confidence: {result.highest_confidence}</p>
-                        </>
-                    )}
-                </div>
-            )}
+                {result && (
+                    <div className="result-section">
+                        <h2>Classification Result:</h2>
+                        {result.error ? (
+                            <p className="error-message">{result.error}</p>
+                        ) : (
+                            <>
+                                <p>Best Class: {result.best_class_name}</p>
+                                <p>Confidence: {result.highest_confidence}</p>
+                            </>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
