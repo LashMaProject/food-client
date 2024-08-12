@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 // import data from '../data.json';
-import './class.css';
+import data from '../../data/data.json';
+import '../Classify/Classify.css';
 
 function Classify() {
-    const [motaModel, setMotaModel] = useState();
+    // const [motaModel, setMotaModel] = useState();
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewImage, setPreviewImage] = useState(null); // To store the preview URL
     const [result, setResult] = useState(null);
@@ -60,21 +61,20 @@ function Classify() {
                 <button onClick={handleSubmit} disabled={!selectedFile} className="classify-button">
                     Upload and Classify
                 </button>
-
-                {result && (
-                    <div className="result-section">
-                        <h2>Classification Result:</h2>
-                        {result.error ? (
-                            <p className="error-message">{result.error}</p>
-                        ) : (
-                            <>
-                                <p>Best Class: {result.best_class_name}</p>
-                                <p>Confidence: {result.highest_confidence}</p>
-                            </>
-                        )}
-                    </div>
-                )}
             </div>
+            {result && (
+                <div className="result-section">
+                    <h2>Classification Result:</h2>
+                    {result.error ? (
+                        <p className="error-message">{result.error}</p>
+                    ) : (
+                        <>
+                            <p>Best Class: {result.best_class_name}</p>
+                            <p>Confidence: {parseFloat(result.highest_confidence).toFixed(2)}</p>
+                        </>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
