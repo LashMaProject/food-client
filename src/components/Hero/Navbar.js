@@ -30,11 +30,12 @@ function Navbar() {
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>   
+          </Link>
+          <Link to="/"  style={{ textDecoration: 'none' }}>
+            <div className="Name"> Lashma</div>
+          </Link>
 
-          <div className="Name">Lashma</div>
-
-          <div className="auth-buttons"> 
+          <div className="auth-buttons">
             {isAuthenticated ? (
               <button onClick={handleLogout} className="logout-button">Logout</button>
             ) : (
@@ -44,7 +45,7 @@ function Navbar() {
               </>
             )}
           </div>
-        </div>   
+        </div >
 
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
@@ -55,10 +56,10 @@ function Navbar() {
             </li>
             {SidebarData.map((item, index) => {
               return (
-                isAuthenticated || item.title === "Home" ? ( 
+                isAuthenticated || item.title === "Home" ? (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
-                      {item.icon}   
+                      {item.icon}
                       <span>{item.title}</span>
                     </Link>
                   </li>
@@ -67,7 +68,7 @@ function Navbar() {
             })}
           </ul>
         </nav>
-      </IconContext.Provider>
+      </IconContext.Provider >
     </>
   );
 }

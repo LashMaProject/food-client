@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProtectedRoute element={Products} />, // Protect Products route
+        element: <ProtectedRoute element={Products} />,
       },
       {
         path: "login",
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "reports",
-        element: <ProtectedRoute element={Reports} />, 
+        element: <ProtectedRoute element={Reports} />,
       }
     ],
   },

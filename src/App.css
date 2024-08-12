@@ -5,6 +5,12 @@
   src: url('../custom_font/Billabong.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Sofia Pro Regular';
+  src: url('../custom_font/Sofia_Pro_Regular_Az.otf') format('truetype');
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -108,6 +114,7 @@ span {
 }
 
 .Name {
+  color: #000;
   font-family: 'Billabong', cursive;
   font-size: 2.5rem;
   margin-left: 1rem;
@@ -140,25 +147,38 @@ span {
 }
 
 .auth-buttons {
-  display: flex;
-  align-items: center;
-  margin-left: 1450px; 
-}
-.login-button {
-  margin-right: 20px;
+  position: relative;
+  left: 70%;
 }
 
-.login-button, .register-button {
-  font-family: 'Billabong', cursive;
-  text-decoration: none; 
-  font-size: 3.0rem;
+.login-button {
+  position: relative;
+  background-color: #ffaf1b;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 10px;
+  margin-right: 25px;
 }
+
+.login-button,
+.register-button {
+  font-family: 'Sofia Pro Regular', cursive;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
 .logout-button {
+  position: relative;
   background-color: #ff4d4d;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 25px;
   border-radius: 5px;
+  left: 80%;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 16px;
