@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import data from '../data.json';
+import React, { useState, useEffect } from 'react';
+// import data from '../data.json';
 import './class.css';
 
-function ImageUploadPage() {
+function Classify() {
     const [motaModel, setMotaModel] = useState();
     const [selectedFile, setSelectedFile] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null); // To store the preview URL
     const [result, setResult] = useState(null);
 
     const handleFileChange = (event) => {
-        setSelectedFile(event.target.files[0]);
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedFile(file);
+            setPreviewImage(URL.createObjectURL(file));
+        }
     };
 
     const handleSubmit = async () => {
@@ -33,14 +38,28 @@ function ImageUploadPage() {
         }
     };
 
+    useEffect(() => {
+        return () => {
+            if (previewImage) {
+                URL.revokeObjectURL(previewImage);
+            }
+        };
+    }, [previewImage]);
+
     return (
         <div className="container">
             <h1>Image Classification</h1>
-
+            {previewImage && ( // Display the image if previewImage is available
+                <div>
+                    <img src={previewImage} alt="Uploaded Preview" style={{ maxWidth: '100%' }} />
+                </div>
+            )}
             <input type="file" onChange={handleFileChange} className="file-input" />
             <button onClick={handleSubmit} disabled={!selectedFile} className="classify-button">
                 Upload and Classify
             </button>
+
+
 
             {result && (
                 <div className="result-section">
@@ -60,4 +79,4 @@ function ImageUploadPage() {
 }
 
 
-export default ImageUploadPage;
+export default Classify;

@@ -7,7 +7,7 @@ import Login from './components/Login'
 import Header from './components/Header'
 import Profile from './components/Profile'
 import useToken from './components/useToken'
-import Classify from '../src/components/Classify'
+import Classify from '../src/components/Classify/Classify'
 
 const App = () => {
   return (
