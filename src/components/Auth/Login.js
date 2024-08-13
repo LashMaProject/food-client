@@ -10,30 +10,30 @@ function Login() {
     event.preventDefault();
     setError('');
     setSuccess('');
-  
+
     const requestData = {
       email: email,
       password: password
     };
-  
+
     try {
-      const response = await fetch('http://127.0.0.1:5000/logintoken', { 
+      const response = await fetch('https://food-server-le3l.onrender.com/logintoken', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestData),
       });
-  
+
       if (response.ok) {
         const result = await response.json();
         setSuccess('User logged in successfully!');
         localStorage.setItem('accessToken', result.access_token);
-        localStorage.setItem('isAuthenticated', 'true'); 
-  
+        localStorage.setItem('isAuthenticated', 'true');
+
         setEmail('');
         setPassword('');
-        window.location.href = '/'; 
+        window.location.href = '/';
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'An error occurred');
@@ -42,7 +42,7 @@ function Login() {
       setError('Failed to login. Please try again later.');
     }
   };
-  
+
 
   return (
     <div>
@@ -66,8 +66,8 @@ function Login() {
             required
           />
         </div>
-        <button  type="submit">Login</button>
-         
+        <button type="submit">Login</button>
+
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {success && <p style={{ color: 'green' }}>{success}</p>}
