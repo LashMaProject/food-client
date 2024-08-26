@@ -1,44 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import AppLayout from './AppLayout';
-import Home from '../src/routes/Home';
-import Login from './components/Auth/Login';
-import Products from '../src/routes/Products';
-import Reports from '../src/routes/Reports';
-import Register from './components/Auth/Register';
-import ProtectedRoute from './components/Auth/ProtectedRoute';  // Import ProtectedRoute
-import './App.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
-const router = createBrowserRouter([
-  {
-    element: <AppLayout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "products",
-        element: <ProtectedRoute element={Products} />,
-      },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "reports",
-        element: <ProtectedRoute element={Reports} />,
-      }
-    ],
-  },
-]);
+import { BrowserRouter as Router } from "react-router-dom";
+
+import App from "./App";
+import { StateProvider } from "./context/StateProvider";
+import { initialState } from "./context/initalState";
+import reducer from "./context/reducer";
 
 ReactDOM.render(
-  <RouterProvider router={router} />,
-  document.getElementById('root')
+  <Router>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <App />
+    </StateProvider>
+  </Router>,
+  document.getElementById("root")
 );
